@@ -2,7 +2,7 @@ import { ref } from "vue";
 
 type ThemeMode = "light" | "dark";
 
-const theme = ref<ThemeMode>("dark");
+const theme = ref<ThemeMode>("light");
 let initialized = false;
 
 function applyTheme(value: ThemeMode) {
@@ -14,7 +14,7 @@ function applyTheme(value: ThemeMode) {
 export function initTheme() {
   if (initialized || typeof window === "undefined") return;
   const stored = localStorage.getItem("theme");
-  const nextTheme: ThemeMode = stored === "light" ? "light" : "dark";
+  const nextTheme: ThemeMode = stored === "dark" ? "dark" : "light";
   applyTheme(nextTheme);
   initialized = true;
 }

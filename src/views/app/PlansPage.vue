@@ -84,7 +84,7 @@ onMounted(async () => {
       <Card
         v-for="(item, index) in topCards"
         :key="item.title"
-        class="glass-panel interactive-panel premium-shell overflow-hidden rounded-[30px] border-white/10 stagger-enter"
+        class="glass-panel interactive-panel premium-shell spotlight-panel overflow-hidden rounded-[30px] border-white/10 stagger-enter"
         :style="{ '--stagger-delay': `${index * 70 + 80}ms` }"
       >
         <CardContent class="relative p-0">
@@ -106,7 +106,7 @@ onMounted(async () => {
       <Card
         v-for="(plan, index) in plans"
         :key="plan.id"
-        class="glass-panel interactive-panel premium-shell micro-lift relative overflow-hidden rounded-[32px] border-white/10 animated-enter-soft"
+        class="glass-panel interactive-panel premium-shell micro-lift spotlight-panel relative overflow-hidden rounded-[32px] border-white/10 animated-enter-soft"
         :style="{ animationDelay: `${index * 80}ms` }"
       >
         <div class="absolute inset-x-0 top-0 h-36 bg-[radial-gradient(circle_at_top,rgba(99,102,241,0.24),transparent_72%)]" />
@@ -129,7 +129,7 @@ onMounted(async () => {
             </div>
           </div>
 
-          <div class="mt-6 min-h-[96px] rounded-[26px] border border-white/10 bg-[var(--surface-elevated)] px-5 py-4">
+          <div class="dashboard-subpanel mt-6 min-h-[96px] rounded-[26px] border border-white/10 bg-[var(--surface-elevated)] px-5 py-4">
             <div class="flex items-end gap-2">
               <div class="text-4xl font-semibold tracking-tight">{{ formatCurrency(bestPrice(plan)) }}</div>
               <div class="pb-1 text-sm text-[var(--muted-foreground)]">起</div>

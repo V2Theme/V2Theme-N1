@@ -142,7 +142,7 @@ async function redeemGiftCard() {
 
   <div v-else class="space-y-6">
     <div class="grid gap-4 md:grid-cols-3">
-      <Card class="glass-panel interactive-panel overflow-hidden rounded-[28px] border-white/10">
+      <Card class="glass-panel interactive-panel stat-card overflow-hidden rounded-[28px] border-white/10">
         <CardContent class="relative p-0">
           <div class="absolute inset-x-0 top-0 h-20 bg-[radial-gradient(circle_at_top,rgba(99,102,241,0.14),transparent_72%)]" />
           <div class="relative flex items-start justify-between p-5">
@@ -157,7 +157,7 @@ async function redeemGiftCard() {
         </CardContent>
       </Card>
 
-      <Card class="glass-panel interactive-panel overflow-hidden rounded-[28px] border-white/10">
+      <Card class="glass-panel interactive-panel stat-card overflow-hidden rounded-[28px] border-white/10">
         <CardContent class="relative p-0">
           <div class="absolute inset-x-0 top-0 h-20 bg-[radial-gradient(circle_at_top,rgba(76,201,240,0.14),transparent_72%)]" />
           <div class="relative flex items-start justify-between p-5">
@@ -172,7 +172,7 @@ async function redeemGiftCard() {
         </CardContent>
       </Card>
 
-      <Card class="glass-panel interactive-panel overflow-hidden rounded-[28px] border-white/10">
+      <Card class="glass-panel interactive-panel stat-card overflow-hidden rounded-[28px] border-white/10">
         <CardContent class="relative p-0">
           <div class="absolute inset-x-0 top-0 h-20 bg-[radial-gradient(circle_at_top,rgba(139,92,246,0.14),transparent_72%)]" />
           <div class="relative flex items-start justify-between p-5">
@@ -189,7 +189,7 @@ async function redeemGiftCard() {
     </div>
 
     <div class="grid gap-6 xl:grid-cols-2">
-      <Card class="glass-panel interactive-panel overflow-hidden rounded-[30px] border-white/10">
+      <Card class="glass-panel interactive-panel premium-shell spotlight-panel overflow-hidden rounded-[30px] border-white/10">
         <CardContent class="relative p-0">
           <div class="absolute inset-x-0 top-0 h-28 bg-[radial-gradient(circle_at_top,rgba(120,119,255,0.18),transparent_72%)]" />
           <div class="relative space-y-5 p-6">
@@ -199,7 +199,7 @@ async function redeemGiftCard() {
               <div class="mt-2 text-sm leading-7 text-[var(--muted-foreground)]">输入您想充值的金额，系统会创建订单并带您继续完成支付。</div>
             </div>
 
-            <div class="action-band rounded-[24px] p-4">
+            <div class="action-band dashboard-subpanel rounded-[24px] p-4">
               <Input v-model="depositAmount" placeholder="请输入充值金额，单位为元" class="h-11 rounded-2xl bg-[var(--background)]/60 px-4" />
               <div class="mt-3 flex items-center justify-between text-xs text-[var(--muted-foreground)]">
                 <span>充值金额</span>
@@ -214,7 +214,7 @@ async function redeemGiftCard() {
         </CardContent>
       </Card>
 
-      <Card class="glass-panel interactive-panel overflow-hidden rounded-[30px] border-white/10">
+      <Card class="glass-panel interactive-panel premium-shell spotlight-panel overflow-hidden rounded-[30px] border-white/10">
         <CardContent class="relative p-0">
           <div class="absolute inset-x-0 top-0 h-28 bg-[radial-gradient(circle_at_top,rgba(76,201,240,0.16),transparent_72%)]" />
           <div class="relative space-y-5 p-6">
@@ -224,7 +224,7 @@ async function redeemGiftCard() {
               <div class="mt-2 text-sm leading-7 text-[var(--muted-foreground)]">如果您收到了兑换码，可以在这里直接兑换到当前账户。</div>
             </div>
 
-            <div class="action-band rounded-[24px] p-4">
+            <div class="action-band dashboard-subpanel rounded-[24px] p-4">
               <div class="flex items-center gap-3 text-sm text-[var(--muted-foreground)]">
                 <Gift class="h-4 w-4 text-[var(--primary)]" />
                 输入礼品卡兑换码后，系统会自动完成兑换。
@@ -247,7 +247,7 @@ async function redeemGiftCard() {
       </Card>
     </div>
 
-    <Card class="glass-panel interactive-panel overflow-hidden rounded-[30px] border-white/10">
+    <Card class="glass-panel interactive-panel premium-shell spotlight-panel overflow-hidden rounded-[30px] border-white/10">
       <CardContent class="relative p-0">
         <div class="absolute inset-x-0 top-0 h-24 bg-[radial-gradient(circle_at_top,rgba(139,92,246,0.12),transparent_72%)]" />
         <div class="relative p-6">
@@ -271,7 +271,7 @@ async function redeemGiftCard() {
 
           <Separator class="my-5" />
 
-          <div class="action-band flex flex-wrap items-center justify-between gap-3 rounded-[24px] p-4">
+          <div class="action-band dashboard-subpanel flex flex-wrap items-center justify-between gap-3 rounded-[24px] p-4">
             <div class="text-sm text-[var(--muted-foreground)]">当前支持：{{ withdrawMethods.join(" / ") || "暂未开放提现" }}</div>
             <Button
               variant="outline"

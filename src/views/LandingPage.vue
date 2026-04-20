@@ -34,7 +34,7 @@ const highlights = [
 <template>
   <div class="relative min-h-screen overflow-hidden bg-[var(--background)]">
     <div class="hero-orb left-[6%] top-16 h-48 w-48 bg-sky-400/25" />
-    <div class="hero-orb right-[8%] top-24 h-56 w-56 bg-indigo-500/25" style="animation-delay: -5s;" />
+    <div class="hero-orb right-[8%] top-24 h-56 w-56 bg-blue-600/22" style="animation-delay: -5s;" />
     <div class="hero-grid absolute inset-0 opacity-70" />
 
     <div class="relative mx-auto flex max-w-7xl flex-col gap-14 px-4 py-8 sm:px-6 lg:gap-18">
@@ -82,7 +82,7 @@ const highlights = [
               </Button>
             </RouterLink>
             <RouterLink to="/plans">
-              <Button variant="outline" size="lg" class="rounded-2xl px-6">查看套餐</Button>
+              <Button variant="outline" size="lg" class="hero-cta-secondary rounded-2xl px-6">查看套餐</Button>
             </RouterLink>
           </div>
 
@@ -102,7 +102,7 @@ const highlights = [
             <Card
               v-for="(item, index) in highlights"
               :key="item.text"
-              class="glass-panel interactive-panel surface-hover rounded-[24px] border-white/10 stagger-enter"
+              class="glass-panel interactive-panel surface-hover highlight-strip rounded-[24px] border-white/10 stagger-enter"
               :style="{ '--stagger-delay': `${index * 90 + 260}ms` }"
             >
               <CardContent class="flex items-center gap-3 p-4">
@@ -118,12 +118,12 @@ const highlights = [
             <Card
               v-for="(card, index) in serviceCards"
               :key="card.name"
-              class="glass-panel interactive-panel micro-lift rounded-[28px] border-white/10 shadow-[var(--shadow-card)] stagger-enter"
+              class="glass-panel interactive-panel micro-lift service-tile rounded-[28px] border-white/10 shadow-[var(--shadow-card)] stagger-enter"
               :style="{ '--stagger-delay': `${index * 70 + 120}ms` }"
             >
               <CardContent class="flex aspect-square flex-col items-center justify-center gap-3 p-6 text-center">
                 <div
-                  class="flex h-14 w-14 items-center justify-center rounded-2xl border border-white/10 bg-[var(--surface-elevated)] text-3xl font-semibold"
+                  class="service-icon-shell flex h-14 w-14 items-center justify-center rounded-2xl border border-white/10 bg-[var(--surface-elevated)] text-3xl font-semibold"
                   :class="card.color"
                 >
                   {{ card.mark }}

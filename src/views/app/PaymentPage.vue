@@ -417,7 +417,7 @@ onBeforeUnmount(() => {
   <div v-else class="space-y-6">
     <Card
       v-if="gatewayReturned && !isFinished && !isCanceled"
-      class="glass-panel interactive-panel premium-shell overflow-hidden rounded-[32px] border-white/10 animated-enter-soft"
+      class="glass-panel interactive-panel premium-shell spotlight-panel overflow-hidden rounded-[32px] border-white/10 animated-enter-soft"
     >
       <CardContent class="relative p-0">
         <div class="absolute inset-x-0 top-0 h-24 bg-[radial-gradient(circle_at_top,rgba(76,201,240,0.18),transparent_72%)]" />
@@ -441,7 +441,7 @@ onBeforeUnmount(() => {
 
     <Card
       v-if="displayPaidState && !gatewayReturned && !isCanceled"
-      class="glass-panel interactive-panel premium-shell overflow-hidden rounded-[32px] border-white/10 animated-enter-soft"
+      class="glass-panel interactive-panel premium-shell spotlight-panel overflow-hidden rounded-[32px] border-white/10 animated-enter-soft"
     >
       <CardContent class="relative p-0">
         <div class="absolute inset-x-0 top-0 h-24 bg-[radial-gradient(circle_at_top,rgba(99,102,241,0.16),transparent_72%)]" />
@@ -469,7 +469,7 @@ onBeforeUnmount(() => {
 
     <Card
       v-if="isCanceled"
-      class="glass-panel interactive-panel premium-shell overflow-hidden rounded-[32px] border-white/10 animated-enter-soft"
+      class="glass-panel interactive-panel premium-shell spotlight-panel overflow-hidden rounded-[32px] border-white/10 animated-enter-soft"
     >
       <CardContent class="relative p-0">
         <div class="absolute inset-x-0 top-0 h-24 bg-[radial-gradient(circle_at_top,rgba(244,63,94,0.16),transparent_72%)]" />
@@ -487,7 +487,7 @@ onBeforeUnmount(() => {
     </Card>
 
     <div class="grid gap-6 xl:grid-cols-[1.02fr_0.98fr]">
-      <Card class="glass-panel interactive-panel premium-shell overflow-hidden rounded-[32px] border-white/10">
+      <Card class="glass-panel interactive-panel premium-shell spotlight-panel overflow-hidden rounded-[32px] border-white/10">
         <CardContent class="relative p-0">
           <div class="absolute inset-x-0 top-0 h-28 bg-[radial-gradient(circle_at_top,rgba(120,119,255,0.18),transparent_72%)]" />
           <div class="relative p-6">
@@ -500,21 +500,21 @@ onBeforeUnmount(() => {
             </div>
 
             <div class="grid gap-4 sm:grid-cols-2">
-              <div class="rounded-[24px] border border-white/10 bg-[var(--surface-elevated)] p-4">
+              <div class="dashboard-subpanel rounded-[24px] border border-white/10 bg-[var(--surface-elevated)] p-4">
                 <div class="text-xs uppercase tracking-[0.18em] text-[var(--muted-foreground)]">订单号</div>
                 <div class="mt-2 break-all text-sm font-medium">{{ order.trade_no }}</div>
               </div>
-              <div class="rounded-[24px] border border-white/10 bg-[var(--surface-elevated)] p-4">
+              <div class="dashboard-subpanel rounded-[24px] border border-white/10 bg-[var(--surface-elevated)] p-4">
                 <div class="text-xs uppercase tracking-[0.18em] text-[var(--muted-foreground)]">订单状态</div>
                 <div class="mt-2">
                   <Badge :variant="statusTone" class="rounded-full px-3 py-1.5">{{ statusLabel(order.status) }}</Badge>
                 </div>
               </div>
-              <div class="rounded-[24px] border border-white/10 bg-[var(--surface-elevated)] p-4">
+              <div class="dashboard-subpanel rounded-[24px] border border-white/10 bg-[var(--surface-elevated)] p-4">
                 <div class="text-xs uppercase tracking-[0.18em] text-[var(--muted-foreground)]">下单时间</div>
                 <div class="mt-2 text-sm font-medium">{{ formatDate(order.created_at) }}</div>
               </div>
-              <div class="rounded-[24px] border border-white/10 bg-[var(--surface-elevated)] p-4">
+              <div class="dashboard-subpanel rounded-[24px] border border-white/10 bg-[var(--surface-elevated)] p-4">
                 <div class="text-xs uppercase tracking-[0.18em] text-[var(--muted-foreground)]">套餐 / 周期</div>
                 <div class="mt-2 text-sm font-medium">
                   {{ order.plan?.name ?? "余额充值或其他订单" }} / {{ formatOrderPeriod(order.period) }}
@@ -522,7 +522,7 @@ onBeforeUnmount(() => {
               </div>
             </div>
 
-            <div class="mt-5 rounded-[26px] border border-white/10 bg-[var(--surface-elevated)] p-5">
+            <div class="dashboard-subpanel mt-5 rounded-[26px] border border-white/10 bg-[var(--surface-elevated)] p-5">
               <div class="space-y-3 text-sm">
                 <div class="flex items-center justify-between">
                   <span class="text-[var(--muted-foreground)]">订单金额</span>
@@ -542,7 +542,7 @@ onBeforeUnmount(() => {
 
             <div
               v-if="paymentResult"
-              class="mt-5 rounded-[26px] border border-dashed border-[color:color-mix(in_srgb,var(--primary)_22%,var(--border))] bg-[var(--surface-elevated)] p-5"
+              class="dashboard-subpanel mt-5 rounded-[26px] border border-dashed border-[color:color-mix(in_srgb,var(--primary)_22%,var(--border))] bg-[var(--surface-elevated)] p-5"
             >
               <div class="flex flex-wrap items-center justify-between gap-3">
                 <div>
@@ -589,7 +589,7 @@ onBeforeUnmount(() => {
         </CardContent>
       </Card>
 
-      <Card class="glass-panel interactive-panel premium-shell overflow-hidden rounded-[32px] border-white/10">
+      <Card class="glass-panel interactive-panel premium-shell spotlight-panel overflow-hidden rounded-[32px] border-white/10">
         <CardContent class="relative p-0">
           <div class="absolute inset-x-0 top-0 h-28 bg-[radial-gradient(circle_at_top,rgba(76,201,240,0.16),transparent_72%)]" />
           <div class="relative p-6">
@@ -611,11 +611,11 @@ onBeforeUnmount(() => {
               <div
                 v-for="method in methods"
                 :key="method.id"
-                class="cursor-pointer rounded-[24px] border p-4 transition-all duration-200"
+              class="cursor-pointer rounded-[24px] border p-4 transition-all duration-200"
                 :class="
                   selectedMethod === method.id
-                    ? 'border-[color:color-mix(in_srgb,var(--primary)_34%,var(--border))] bg-[var(--surface)] shadow-[var(--shadow-soft)]'
-                    : 'border-white/10 bg-[var(--surface-elevated)] hover:-translate-y-0.5 hover:shadow-[var(--shadow-soft)]'
+                    ? 'dashboard-subpanel border-[color:color-mix(in_srgb,var(--primary)_34%,var(--border))] bg-[var(--surface)] shadow-[var(--shadow-soft)]'
+                    : 'dashboard-subpanel border-white/10 bg-[var(--surface-elevated)] hover:-translate-y-0.5 hover:shadow-[var(--shadow-soft)]'
                 "
                 @click="selectedMethod = method.id"
               >
@@ -640,7 +640,7 @@ onBeforeUnmount(() => {
               </div>
             </div>
 
-            <div v-else class="rounded-[26px] border border-white/10 bg-[var(--surface-elevated)] p-5">
+            <div v-else class="dashboard-subpanel rounded-[26px] border border-white/10 bg-[var(--surface-elevated)] p-5">
               <div class="text-sm font-medium">支付结果已返回</div>
               <div class="mt-2 text-sm leading-6 text-[var(--muted-foreground)]">
                 {{
@@ -651,7 +651,7 @@ onBeforeUnmount(() => {
               </div>
             </div>
 
-            <div class="action-band mt-5 rounded-[26px] p-4">
+            <div class="action-band dashboard-subpanel mt-5 rounded-[26px] p-4">
               <div class="flex items-center justify-between text-sm">
                 <span class="text-[var(--muted-foreground)]">当前应付</span>
                 <span class="text-lg font-semibold">{{ formatCurrency(payable) }}</span>

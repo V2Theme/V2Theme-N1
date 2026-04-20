@@ -141,7 +141,7 @@ async function submitOrder() {
   />
 
   <div v-else class="grid gap-6 xl:grid-cols-[1.1fr_0.9fr]">
-    <Card class="glass-panel interactive-panel overflow-hidden rounded-[30px] border-white/10">
+    <Card class="glass-panel interactive-panel premium-shell spotlight-panel overflow-hidden rounded-[30px] border-white/10">
       <CardContent class="relative p-0">
         <div class="absolute inset-x-0 top-0 h-28 bg-[radial-gradient(circle_at_top,rgba(120,119,255,0.18),transparent_72%)]" />
         <div class="relative p-6">
@@ -157,7 +157,7 @@ async function submitOrder() {
             <div
               v-for="item in planFeatures"
               :key="item.feature"
-              class="rounded-[22px] border border-white/10 bg-[var(--surface-elevated)] px-4 py-3 text-sm"
+              class="dashboard-subpanel rounded-[22px] border border-white/10 bg-[var(--surface-elevated)] px-4 py-3 text-sm"
             >
               {{ item.feature }}
             </div>
@@ -170,8 +170,8 @@ async function submitOrder() {
               class="rounded-[24px] border px-4 py-4 text-left transition-all duration-200"
               :class="
                 form.period === key
-                  ? 'border-[color:color-mix(in_srgb,var(--primary)_34%,var(--border))] bg-[var(--surface)] shadow-[var(--shadow-soft)]'
-                  : 'border-white/10 bg-[var(--surface-elevated)] hover:-translate-y-0.5 hover:shadow-[var(--shadow-soft)]'
+                  ? 'dashboard-subpanel border-[color:color-mix(in_srgb,var(--primary)_34%,var(--border))] bg-[var(--surface)] shadow-[var(--shadow-soft)]'
+                  : 'dashboard-subpanel border-white/10 bg-[var(--surface-elevated)] hover:-translate-y-0.5 hover:shadow-[var(--shadow-soft)]'
               "
               @click="form.period = key"
             >
@@ -186,7 +186,7 @@ async function submitOrder() {
       </CardContent>
     </Card>
 
-    <Card class="glass-panel interactive-panel overflow-hidden rounded-[30px] border-white/10">
+    <Card class="glass-panel interactive-panel premium-shell spotlight-panel overflow-hidden rounded-[30px] border-white/10">
       <CardContent class="relative p-0">
         <div class="absolute inset-x-0 top-0 h-28 bg-[radial-gradient(circle_at_top,rgba(76,201,240,0.16),transparent_72%)]" />
         <div class="relative p-6">
@@ -212,7 +212,7 @@ async function submitOrder() {
           </div>
           <p v-if="couponError" class="mt-3 text-sm text-rose-500">{{ couponError }}</p>
 
-          <div class="mt-5 rounded-[24px] border border-white/10 bg-[var(--surface-elevated)] p-4">
+          <div class="dashboard-subpanel mt-5 rounded-[24px] border border-white/10 bg-[var(--surface-elevated)] p-4">
             <div class="space-y-3 text-sm">
               <div class="flex justify-between">
                 <span class="text-[var(--muted-foreground)]">当前选择</span>

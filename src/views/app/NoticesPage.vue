@@ -39,7 +39,7 @@ onMounted(async () => {
   <StateBlock v-else-if="!notices.length" title="暂无公告" description="当前还没有新的站内消息，后续更新会显示在这里。" />
 
   <div v-else class="space-y-6">
-    <Card v-if="latestNotice" class="glass-panel interactive-panel rounded-[30px] border-white/10">
+    <Card v-if="latestNotice" class="glass-panel interactive-panel premium-shell spotlight-panel rounded-[30px] border-white/10">
       <CardContent class="grid gap-6 p-6 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
         <div>
           <div class="text-xs uppercase tracking-[0.18em] text-[var(--muted-foreground)]">最新公告</div>
@@ -48,7 +48,7 @@ onMounted(async () => {
             {{ latestNotice.content }}
           </div>
         </div>
-        <div class="rounded-[24px] border border-white/10 bg-[var(--surface-elevated)] p-5">
+        <div class="dashboard-subpanel rounded-[24px] border border-white/10 bg-[var(--surface-elevated)] p-5">
           <div class="text-sm text-[var(--muted-foreground)]">发布时间</div>
           <div class="mt-2 text-lg font-semibold">{{ formatDate(latestNotice.created_at) }}</div>
           <Button class="mt-5 rounded-full px-5" @click="activeId = latestNotice.id">查看详情</Button>
@@ -60,7 +60,7 @@ onMounted(async () => {
       <Card
         v-for="(notice, index) in notices"
         :key="notice.id"
-        class="glass-panel interactive-panel rounded-[28px] border-white/10 animated-enter-soft"
+        class="glass-panel interactive-panel premium-shell spotlight-panel rounded-[28px] border-white/10 animated-enter-soft"
         :style="{ animationDelay: `${index * 60}ms` }"
       >
         <CardHeader>

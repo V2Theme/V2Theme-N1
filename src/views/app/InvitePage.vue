@@ -97,19 +97,19 @@ onMounted(refresh);
 
   <div v-else class="space-y-6">
     <div class="grid gap-4 md:grid-cols-3">
-      <Card class="glass-panel interactive-panel rounded-[28px] border-white/10">
+      <Card class="glass-panel interactive-panel stat-card rounded-[28px] border-white/10">
         <CardContent class="p-5">
           <div class="text-sm text-[var(--muted-foreground)]">邀请码数量</div>
           <div class="mt-3 text-2xl font-semibold">{{ stats.inviteCount }}</div>
         </CardContent>
       </Card>
-      <Card class="glass-panel interactive-panel rounded-[28px] border-white/10">
+      <Card class="glass-panel interactive-panel stat-card rounded-[28px] border-white/10">
         <CardContent class="p-5">
           <div class="text-sm text-[var(--muted-foreground)]">邀请注册人数</div>
           <div class="mt-3 text-2xl font-semibold">{{ stats.registerCount }}</div>
         </CardContent>
       </Card>
-      <Card class="glass-panel interactive-panel rounded-[28px] border-white/10">
+      <Card class="glass-panel interactive-panel stat-card rounded-[28px] border-white/10">
         <CardContent class="p-5">
           <div class="text-sm text-[var(--muted-foreground)]">累计返利</div>
           <div class="mt-3 text-2xl font-semibold">{{ formatCurrency(stats.commission) }}</div>
@@ -118,20 +118,20 @@ onMounted(refresh);
     </div>
 
     <div class="grid gap-6 xl:grid-cols-[0.9fr_1.1fr]">
-      <Card class="glass-panel interactive-panel premium-shell rounded-[30px] border-white/10">
+      <Card class="glass-panel interactive-panel premium-shell spotlight-panel rounded-[30px] border-white/10">
         <CardHeader>
           <div class="text-xs uppercase tracking-[0.18em] text-[var(--muted-foreground)]">邀请入口</div>
           <CardTitle class="text-[1.55rem]">分享注册链接</CardTitle>
           <CardDescription>生成邀请码后，直接复制邀请链接分享给需要的人即可。</CardDescription>
         </CardHeader>
         <CardContent class="space-y-5">
-          <div class="rounded-[24px] border border-white/10 bg-[var(--surface-elevated)] p-5">
+          <div class="dashboard-subpanel rounded-[24px] border border-white/10 bg-[var(--surface-elevated)] p-5">
             <div class="text-sm text-[var(--muted-foreground)]">当前邀请码</div>
             <div class="mt-3 text-xl font-semibold">{{ currentCode || "尚未生成" }}</div>
             <div v-if="summary.codes?.[0]?.created_at" class="mt-2 text-sm text-[var(--muted-foreground)]">
               创建时间：{{ formatDate(summary.codes?.[0]?.created_at) }}
             </div>
-            <div v-if="inviteLink" class="mt-4 break-all rounded-2xl border border-white/10 bg-white/40 px-4 py-3 text-sm text-[var(--muted-foreground)]">
+            <div v-if="inviteLink" class="dashboard-subpanel mt-4 break-all rounded-2xl border border-white/10 bg-white/40 px-4 py-3 text-sm text-[var(--muted-foreground)]">
               {{ inviteLink }}
             </div>
           </div>
@@ -141,7 +141,7 @@ onMounted(refresh);
             <Button variant="outline" class="rounded-full px-5" :disabled="!inviteLink" @click="copyInviteLink">复制邀请链接</Button>
           </div>
 
-          <div class="rounded-[24px] border border-white/10 bg-[var(--surface-elevated)] p-5">
+          <div class="dashboard-subpanel rounded-[24px] border border-white/10 bg-[var(--surface-elevated)] p-5">
             <div class="text-sm font-medium">佣金转入余额</div>
             <div class="mt-2 text-sm leading-6 text-[var(--muted-foreground)]">输入需要转入余额的金额，单位为元。</div>
             <div class="mt-4 flex flex-col gap-3 sm:flex-row">
@@ -153,7 +153,7 @@ onMounted(refresh);
         </CardContent>
       </Card>
 
-      <Card class="glass-panel interactive-panel premium-shell rounded-[30px] border-white/10">
+      <Card class="glass-panel interactive-panel premium-shell spotlight-panel rounded-[30px] border-white/10">
         <CardHeader>
           <div class="text-xs uppercase tracking-[0.18em] text-[var(--muted-foreground)]">返利明细</div>
           <CardTitle class="text-[1.55rem]">最近返利记录</CardTitle>
@@ -162,7 +162,7 @@ onMounted(refresh);
         <CardContent>
           <StateBlock v-if="!details.length" title="暂无返利明细" description="当前还没有通过邀请带来的返利记录。" />
           <div v-else class="space-y-3">
-            <div v-for="item in details" :key="item.id" class="rounded-[24px] border border-white/10 bg-[var(--surface-elevated)] p-4">
+            <div v-for="item in details" :key="item.id" class="dashboard-subpanel rounded-[24px] border border-white/10 bg-[var(--surface-elevated)] p-4">
               <div class="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
                 <div>
                   <div class="font-medium">{{ item.email }}</div>

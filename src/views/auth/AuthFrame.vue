@@ -35,7 +35,7 @@ const featureCards = [
   <div class="min-h-screen bg-[var(--background)]">
     <div class="grid min-h-screen lg:grid-cols-[1.08fr_0.92fr]">
       <section class="relative hidden overflow-hidden border-r border-[var(--border)] lg:block">
-        <div class="hero-orb left-[12%] top-[14%] h-56 w-56 bg-indigo-500/20" />
+        <div class="hero-orb left-[12%] top-[14%] h-56 w-56 bg-blue-600/18" />
         <div class="hero-orb bottom-[12%] right-[10%] h-72 w-72 bg-sky-400/18" style="animation-delay: -6s;" />
         <div class="hero-grid absolute inset-0 opacity-70" />
         <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(120,119,255,0.2),transparent_32%),radial-gradient(circle_at_bottom_right,rgba(76,201,240,0.18),transparent_32%)]" />
@@ -84,7 +84,7 @@ const featureCards = [
       </section>
 
       <section class="relative flex items-center justify-center px-4 py-10 sm:px-6">
-        <div class="hero-orb left-[5%] top-14 h-32 w-32 bg-indigo-500/10 lg:hidden" />
+        <div class="hero-orb left-[5%] top-14 h-32 w-32 bg-blue-600/10 lg:hidden" />
         <div class="hero-orb bottom-12 right-[6%] h-40 w-40 bg-sky-400/10 lg:hidden" style="animation-delay: -4s;" />
         <div class="w-full max-w-md animated-enter-soft">
           <div class="mb-8 flex items-center justify-between">

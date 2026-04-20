@@ -40,7 +40,7 @@ function logout() {
             <Menu class="h-4 w-4" />
           </Button>
           <RouterLink to="/dashboard" class="group flex items-center gap-3">
-            <div class="flex h-9 w-9 items-center justify-center rounded-2xl border border-white/10 bg-[var(--hero-gradient)] shadow-[var(--shadow-soft)] transition-transform duration-200 group-hover:-translate-y-0.5">
+            <div class="brand-mark flex h-9 w-9 items-center justify-center rounded-2xl border border-white/10 bg-[var(--hero-gradient)] shadow-[var(--shadow-soft)] transition-transform duration-200 group-hover:-translate-y-0.5">
               <Sparkles class="h-4 w-4 text-[var(--primary)]" />
             </div>
             <div>
@@ -80,7 +80,7 @@ function logout() {
 
         <Card class="glass-panel premium-shell rounded-[32px] border-white/10 md:sticky md:top-24">
           <CardContent class="space-y-6 p-4">
-            <div class="rounded-[26px] border border-white/10 bg-[var(--hero-gradient)] p-5 shadow-[var(--shadow-soft)]">
+            <div class="brand-banner rounded-[26px] border border-white/10 bg-[var(--hero-gradient)] p-5 shadow-[var(--shadow-soft)]">
               <div class="flex items-center justify-between gap-3">
                 <div class="flex items-center gap-2 text-xs font-medium uppercase tracking-[0.22em] text-[var(--muted-foreground)]">
                   <Sparkles class="h-3.5 w-3.5" />
@@ -105,9 +105,9 @@ function logout() {
                   :to="item.to"
                   :class="
                     cn(
-                      'group flex h-[50px] items-center justify-between rounded-[18px] border px-4 text-sm transition-all duration-250 will-change-transform',
+                      'sidebar-nav-item group flex h-[52px] items-center justify-between rounded-[18px] border px-4 text-sm transition-all duration-250 will-change-transform',
                       route.path.startsWith(item.to)
-                        ? 'border-[color:color-mix(in_srgb,var(--primary)_18%,var(--border))] bg-[var(--surface)] text-[var(--foreground)] shadow-[var(--shadow-soft)]'
+                        ? 'sidebar-nav-item-active border-[color:color-mix(in_srgb,var(--primary)_18%,var(--border))] bg-[var(--surface)] text-[var(--foreground)] shadow-[var(--shadow-soft)]'
                         : 'border-transparent text-[var(--muted-foreground)] hover:-translate-y-0.5 hover:border-[color:color-mix(in_srgb,var(--primary)_16%,var(--border))] hover:bg-[var(--surface)] hover:text-[var(--foreground)]',
                     )
                   "

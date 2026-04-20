@@ -71,7 +71,7 @@ onMounted(async () => {
       <Card
         v-for="(item, index) in quickStats"
         :key="item.label"
-        class="glass-panel interactive-panel premium-shell min-h-[152px] rounded-[30px] border-white/10 animated-enter-soft"
+        class="glass-panel interactive-panel premium-shell stat-card min-h-[152px] rounded-[30px] border-white/10 animated-enter-soft"
         :style="{ animationDelay: `${index * 70}ms` }"
       >
         <CardContent class="flex h-full items-start justify-between p-6">
@@ -87,7 +87,7 @@ onMounted(async () => {
     </div>
 
     <div class="grid gap-6 xl:grid-cols-[1.7fr_1.05fr]">
-      <Card class="glass-panel interactive-panel premium-shell min-h-[448px] rounded-[32px] border-white/10 animated-enter-soft" style="animation-delay: 120ms;">
+      <Card class="glass-panel interactive-panel premium-shell spotlight-panel min-h-[448px] rounded-[32px] border-white/10 animated-enter-soft" style="animation-delay: 120ms;">
         <CardHeader class="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
           <div>
             <CardTitle class="text-[1.85rem] tracking-tight">当前套餐</CardTitle>
@@ -98,17 +98,17 @@ onMounted(async () => {
 
         <CardContent class="flex h-full flex-col space-y-6">
           <div class="grid gap-4 sm:grid-cols-2">
-            <div class="rounded-[24px] border border-white/10 bg-[var(--surface-elevated)] p-5">
+            <div class="dashboard-subpanel rounded-[24px] border border-white/10 bg-[var(--surface-elevated)] p-5">
               <div class="text-xs uppercase tracking-[0.18em] text-[var(--muted-foreground)]">到期时间</div>
               <div class="mt-3 text-base font-medium">{{ formatDate(subscribe?.expired_at) }}</div>
             </div>
-            <div class="rounded-[24px] border border-white/10 bg-[var(--surface-elevated)] p-5">
+            <div class="dashboard-subpanel rounded-[24px] border border-white/10 bg-[var(--surface-elevated)] p-5">
               <div class="text-xs uppercase tracking-[0.18em] text-[var(--muted-foreground)]">设备限制</div>
               <div class="mt-3 text-base font-medium">{{ subscribe?.device_limit ?? user?.device_limit ?? "不限" }}</div>
             </div>
           </div>
 
-          <div class="rounded-[24px] border border-white/10 bg-[var(--surface-elevated)] p-5">
+          <div class="dashboard-subpanel rounded-[24px] border border-white/10 bg-[var(--surface-elevated)] p-5">
             <div class="mb-3 flex items-center justify-between text-sm">
               <span>流量使用情况</span>
               <span>{{ usagePercent }}%</span>
@@ -123,14 +123,14 @@ onMounted(async () => {
           </div>
 
           <div class="mt-auto flex flex-wrap gap-3 pt-2">
-            <Button class="rounded-full px-5" @click="router.push('/subscription')">查看订阅</Button>
-            <Button variant="outline" class="rounded-full px-5" @click="router.push('/plans')">选购套餐</Button>
-            <Button variant="outline" class="rounded-full px-5" @click="router.push('/tickets')">提交工单</Button>
+            <Button class="hero-cta rounded-full px-5" @click="router.push('/subscription')">查看订阅</Button>
+            <Button variant="outline" class="hero-cta-secondary rounded-full px-5" @click="router.push('/plans')">选购套餐</Button>
+            <Button variant="outline" class="hero-cta-secondary rounded-full px-5" @click="router.push('/tickets')">提交工单</Button>
           </div>
         </CardContent>
       </Card>
 
-      <Card class="glass-panel interactive-panel premium-shell min-h-[448px] rounded-[32px] border-white/10 animated-enter-soft" style="animation-delay: 180ms;">
+      <Card class="glass-panel interactive-panel premium-shell spotlight-panel min-h-[448px] rounded-[32px] border-white/10 animated-enter-soft" style="animation-delay: 180ms;">
         <CardHeader class="pb-4">
           <div class="flex items-center gap-3">
             <div class="flex h-12 w-12 items-center justify-center rounded-[20px] border border-white/10 bg-[var(--surface-elevated)] shadow-[var(--shadow-soft)]">
@@ -143,11 +143,11 @@ onMounted(async () => {
           </div>
         </CardHeader>
         <CardContent class="flex h-full flex-col space-y-4">
-          <div class="rounded-[24px] border border-white/10 bg-[var(--surface-elevated)] p-5">
+          <div class="dashboard-subpanel rounded-[24px] border border-white/10 bg-[var(--surface-elevated)] p-5">
             <div class="text-sm text-[var(--muted-foreground)]">今日流量</div>
             <div class="mt-3 text-[2rem] font-semibold tracking-tight">{{ formatBytes(stats.day_used_traffic ?? 0) }}</div>
           </div>
-          <div class="rounded-[24px] border border-white/10 bg-[var(--surface-elevated)] p-5">
+          <div class="dashboard-subpanel rounded-[24px] border border-white/10 bg-[var(--surface-elevated)] p-5">
             <div class="text-sm text-[var(--muted-foreground)]">待处理工单</div>
             <div class="mt-3 text-[2rem] font-semibold tracking-tight">{{ pendingTickets }}</div>
           </div>

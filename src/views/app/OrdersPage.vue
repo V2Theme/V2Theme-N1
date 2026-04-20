@@ -95,7 +95,7 @@ async function cancelOrder() {
 
   <div v-else class="space-y-6">
     <div class="grid gap-4 md:grid-cols-3">
-      <Card class="glass-panel interactive-panel overflow-hidden rounded-[28px] border-white/10">
+      <Card class="glass-panel interactive-panel stat-card overflow-hidden rounded-[28px] border-white/10">
         <CardContent class="relative p-0">
           <div class="absolute inset-x-0 top-0 h-20 bg-[radial-gradient(circle_at_top,rgba(99,102,241,0.14),transparent_72%)]" />
           <div class="relative p-5">
@@ -105,7 +105,7 @@ async function cancelOrder() {
         </CardContent>
       </Card>
 
-      <Card class="glass-panel interactive-panel overflow-hidden rounded-[28px] border-white/10">
+      <Card class="glass-panel interactive-panel stat-card overflow-hidden rounded-[28px] border-white/10">
         <CardContent class="relative p-0">
           <div class="absolute inset-x-0 top-0 h-20 bg-[radial-gradient(circle_at_top,rgba(76,201,240,0.14),transparent_72%)]" />
           <div class="relative p-5">
@@ -115,7 +115,7 @@ async function cancelOrder() {
         </CardContent>
       </Card>
 
-      <Card class="glass-panel interactive-panel overflow-hidden rounded-[28px] border-white/10">
+      <Card class="glass-panel interactive-panel stat-card overflow-hidden rounded-[28px] border-white/10">
         <CardContent class="relative p-0">
           <div class="absolute inset-x-0 top-0 h-20 bg-[radial-gradient(circle_at_top,rgba(139,92,246,0.14),transparent_72%)]" />
           <div class="relative p-5">
@@ -130,7 +130,7 @@ async function cancelOrder() {
       <Button class="rounded-full px-5" @click="router.push('/plans')">去看看套餐</Button>
     </StateBlock>
 
-    <Card v-else class="glass-panel interactive-panel overflow-hidden rounded-[30px] border-white/10">
+    <Card v-else class="glass-panel interactive-panel premium-shell spotlight-panel overflow-hidden rounded-[30px] border-white/10">
       <CardContent class="relative p-0">
         <div class="absolute inset-x-0 top-0 h-24 bg-[radial-gradient(circle_at_top,rgba(120,119,255,0.16),transparent_72%)]" />
         <div class="relative p-6">
@@ -185,7 +185,7 @@ async function cancelOrder() {
             </div>
           </div>
 
-          <div class="hidden overflow-x-auto rounded-[24px] border border-white/10 bg-[var(--surface-elevated)] md:block">
+          <div class="dashboard-subpanel hidden overflow-x-auto rounded-[24px] border border-white/10 bg-[var(--surface-elevated)] md:block">
             <Table>
               <TableHeader>
                 <TableRow>

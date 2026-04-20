@@ -142,7 +142,7 @@ onMounted(refresh);
   />
 
   <div class="mb-6 grid gap-4 lg:grid-cols-3">
-    <Card class="glass-panel interactive-panel overflow-hidden rounded-[28px] border-white/10 lg:col-span-2">
+    <Card class="glass-panel interactive-panel stat-card overflow-hidden rounded-[28px] border-white/10 lg:col-span-2">
       <CardContent class="relative p-0">
         <div class="absolute inset-x-0 top-0 h-20 bg-[radial-gradient(circle_at_top,rgba(99,102,241,0.14),transparent_72%)]" />
         <div class="relative flex flex-col gap-4 p-5 sm:flex-row sm:items-center sm:justify-between">
@@ -155,7 +155,7 @@ onMounted(refresh);
       </CardContent>
     </Card>
 
-    <Card class="glass-panel interactive-panel overflow-hidden rounded-[28px] border-white/10">
+    <Card class="glass-panel interactive-panel stat-card overflow-hidden rounded-[28px] border-white/10">
       <CardContent class="relative p-0">
         <div class="absolute inset-x-0 top-0 h-20 bg-[radial-gradient(circle_at_top,rgba(76,201,240,0.14),transparent_72%)]" />
         <div class="relative flex items-center justify-between p-5">
@@ -173,7 +173,7 @@ onMounted(refresh);
   <StateBlock v-else-if="error" title="工单加载失败" :description="error" />
 
   <div v-else class="grid gap-6 xl:grid-cols-[0.92fr_1.08fr]">
-    <Card class="glass-panel interactive-panel overflow-hidden rounded-[30px] border-white/10">
+    <Card class="glass-panel interactive-panel premium-shell spotlight-panel overflow-hidden rounded-[30px] border-white/10">
       <CardContent class="relative p-0">
         <div class="absolute inset-x-0 top-0 h-24 bg-[radial-gradient(circle_at_top,rgba(120,119,255,0.16),transparent_72%)]" />
         <div class="relative p-6">
@@ -194,8 +194,8 @@ onMounted(refresh);
               class="w-full rounded-[24px] border p-4 text-left transition-all duration-200"
               :class="
                 selectedTicket?.id === ticket.id
-                  ? 'border-[color:color-mix(in_srgb,var(--primary)_34%,var(--border))] bg-[var(--surface)] shadow-[var(--shadow-soft)]'
-                  : 'border-white/10 bg-[var(--surface-elevated)] hover:-translate-y-0.5 hover:shadow-[var(--shadow-soft)]'
+                  ? 'dashboard-subpanel border-[color:color-mix(in_srgb,var(--primary)_34%,var(--border))] bg-[var(--surface)] shadow-[var(--shadow-soft)]'
+                  : 'dashboard-subpanel border-white/10 bg-[var(--surface-elevated)] hover:-translate-y-0.5 hover:shadow-[var(--shadow-soft)]'
               "
               @click="selectTicket(ticket)"
             >
@@ -217,7 +217,7 @@ onMounted(refresh);
       </CardContent>
     </Card>
 
-    <Card class="glass-panel interactive-panel overflow-hidden rounded-[30px] border-white/10">
+    <Card class="glass-panel interactive-panel premium-shell spotlight-panel overflow-hidden rounded-[30px] border-white/10">
       <CardContent class="relative p-0">
         <div class="absolute inset-x-0 top-0 h-24 bg-[radial-gradient(circle_at_top,rgba(76,201,240,0.16),transparent_72%)]" />
         <div class="relative p-6">
@@ -247,7 +247,7 @@ onMounted(refresh);
                 v-for="message in messages"
                 :key="message.id"
                 class="rounded-[24px] border p-4"
-                :class="message.is_admin ? 'border-white/10 bg-[var(--surface-elevated)]' : 'border-[color:color-mix(in_srgb,var(--primary)_24%,var(--border))] bg-[var(--surface)]'"
+                :class="message.is_admin ? 'dashboard-subpanel border-white/10 bg-[var(--surface-elevated)]' : 'dashboard-subpanel border-[color:color-mix(in_srgb,var(--primary)_24%,var(--border))] bg-[var(--surface)]'"
               >
                 <div class="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
                   <div class="text-sm font-medium">{{ message.is_admin ? "客服" : "用户" }}</div>
@@ -259,7 +259,7 @@ onMounted(refresh);
               <StateBlock v-if="!messages.length" title="暂无消息记录" description="这个工单还没有更多会话内容。" />
             </div>
 
-            <div v-if="canReply" class="mt-4 space-y-3 rounded-[24px] border border-white/10 bg-[var(--surface-elevated)] p-4">
+            <div v-if="canReply" class="dashboard-subpanel mt-4 space-y-3 rounded-[24px] border border-white/10 bg-[var(--surface-elevated)] p-4">
               <div class="text-sm font-medium">继续回复</div>
               <Textarea
                 v-model="replyText"

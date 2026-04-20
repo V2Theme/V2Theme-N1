@@ -121,7 +121,7 @@ function sessionDeviceLabel(ua = "") {
 
   <div v-else class="space-y-6">
     <div class="grid gap-4 md:grid-cols-4">
-      <Card class="glass-panel interactive-panel overflow-hidden rounded-[28px] border-white/10 md:col-span-2">
+      <Card class="glass-panel interactive-panel stat-card overflow-hidden rounded-[28px] border-white/10 md:col-span-2">
         <CardContent class="relative p-0">
           <div class="absolute inset-x-0 top-0 h-20 bg-[radial-gradient(circle_at_top,rgba(99,102,241,0.14),transparent_72%)]" />
           <div class="relative flex items-center gap-4 p-5">
@@ -140,7 +140,7 @@ function sessionDeviceLabel(ua = "") {
         </CardContent>
       </Card>
 
-      <Card class="glass-panel interactive-panel overflow-hidden rounded-[28px] border-white/10">
+      <Card class="glass-panel interactive-panel stat-card overflow-hidden rounded-[28px] border-white/10">
         <CardContent class="relative p-0">
           <div class="absolute inset-x-0 top-0 h-20 bg-[radial-gradient(circle_at_top,rgba(76,201,240,0.14),transparent_72%)]" />
           <div class="relative p-5">
@@ -150,7 +150,7 @@ function sessionDeviceLabel(ua = "") {
         </CardContent>
       </Card>
 
-      <Card class="glass-panel interactive-panel overflow-hidden rounded-[28px] border-white/10">
+      <Card class="glass-panel interactive-panel stat-card overflow-hidden rounded-[28px] border-white/10">
         <CardContent class="relative p-0">
           <div class="absolute inset-x-0 top-0 h-20 bg-[radial-gradient(circle_at_top,rgba(139,92,246,0.14),transparent_72%)]" />
           <div class="relative p-5">
@@ -162,7 +162,7 @@ function sessionDeviceLabel(ua = "") {
     </div>
 
     <div class="grid gap-6 xl:grid-cols-2">
-      <Card class="glass-panel interactive-panel overflow-hidden rounded-[30px] border-white/10">
+      <Card class="glass-panel interactive-panel premium-shell spotlight-panel overflow-hidden rounded-[30px] border-white/10">
         <CardContent class="relative p-0">
           <div class="absolute inset-x-0 top-0 h-24 bg-[radial-gradient(circle_at_top,rgba(120,119,255,0.16),transparent_72%)]" />
           <div class="relative p-6">
@@ -175,7 +175,7 @@ function sessionDeviceLabel(ua = "") {
             </div>
 
             <div class="space-y-4">
-              <button class="flex w-full items-center justify-between rounded-[24px] border border-white/10 bg-[var(--surface-elevated)] px-4 py-4 text-left transition hover:shadow-[var(--shadow-soft)]" @click="remind.expire = !remind.expire">
+              <button class="dashboard-subpanel flex w-full items-center justify-between rounded-[24px] border border-white/10 bg-[var(--surface-elevated)] px-4 py-4 text-left transition hover:shadow-[var(--shadow-soft)]" @click="remind.expire = !remind.expire">
                 <div>
                   <div class="font-medium">到期提醒</div>
                   <div class="mt-1 text-sm text-[var(--muted-foreground)]">在套餐快到期时提前提醒您，避免影响继续使用。</div>
@@ -183,7 +183,7 @@ function sessionDeviceLabel(ua = "") {
                 <Badge :variant="remind.expire ? 'secondary' : 'outline'" class="rounded-full px-3 py-1.5">{{ remind.expire ? "已开启" : "已关闭" }}</Badge>
               </button>
 
-              <button class="flex w-full items-center justify-between rounded-[24px] border border-white/10 bg-[var(--surface-elevated)] px-4 py-4 text-left transition hover:shadow-[var(--shadow-soft)]" @click="remind.traffic = !remind.traffic">
+              <button class="dashboard-subpanel flex w-full items-center justify-between rounded-[24px] border border-white/10 bg-[var(--surface-elevated)] px-4 py-4 text-left transition hover:shadow-[var(--shadow-soft)]" @click="remind.traffic = !remind.traffic">
                 <div>
                   <div class="font-medium">流量提醒</div>
                   <div class="mt-1 text-sm text-[var(--muted-foreground)]">在流量快用完时提前提醒您，方便及时处理。</div>
@@ -206,7 +206,7 @@ function sessionDeviceLabel(ua = "") {
         </CardContent>
       </Card>
 
-      <Card class="glass-panel interactive-panel overflow-hidden rounded-[30px] border-white/10">
+      <Card class="glass-panel interactive-panel premium-shell spotlight-panel overflow-hidden rounded-[30px] border-white/10">
         <CardContent class="relative p-0">
           <div class="absolute inset-x-0 top-0 h-24 bg-[radial-gradient(circle_at_top,rgba(76,201,240,0.16),transparent_72%)]" />
           <div class="relative p-6">
@@ -242,7 +242,7 @@ function sessionDeviceLabel(ua = "") {
     </div>
 
     <div class="grid gap-6 xl:grid-cols-[1.15fr_0.85fr]">
-      <Card class="glass-panel interactive-panel overflow-hidden rounded-[30px] border-white/10">
+      <Card class="glass-panel interactive-panel premium-shell spotlight-panel overflow-hidden rounded-[30px] border-white/10">
         <CardContent class="relative p-0">
           <div class="absolute inset-x-0 top-0 h-24 bg-[radial-gradient(circle_at_top,rgba(120,119,255,0.12),transparent_72%)]" />
           <div class="relative p-6">
@@ -259,7 +259,7 @@ function sessionDeviceLabel(ua = "") {
             <div
               v-for="(session, index) in recentSessions"
               :key="`${session.auth_data ?? 'session'}-${index}`"
-              class="rounded-[24px] border border-white/10 bg-[var(--surface-elevated)] p-4 transition hover:shadow-[var(--shadow-soft)]"
+              class="dashboard-subpanel rounded-[24px] border border-white/10 bg-[var(--surface-elevated)] p-4 transition hover:shadow-[var(--shadow-soft)]"
             >
               <div class="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
                 <div>
@@ -276,7 +276,7 @@ function sessionDeviceLabel(ua = "") {
         </CardContent>
       </Card>
 
-      <Card class="glass-panel interactive-panel overflow-hidden rounded-[30px] border-white/10">
+      <Card class="glass-panel interactive-panel premium-shell spotlight-panel overflow-hidden rounded-[30px] border-white/10">
         <CardContent class="relative p-0">
           <div class="absolute inset-x-0 top-0 h-24 bg-[radial-gradient(circle_at_top,rgba(139,92,246,0.12),transparent_72%)]" />
           <div class="relative p-6">

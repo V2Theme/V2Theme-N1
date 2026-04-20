@@ -55,13 +55,13 @@ onMounted(async () => {
 
   <div v-else class="space-y-6">
     <div class="grid gap-4 md:grid-cols-2">
-      <Card class="glass-panel interactive-panel rounded-[28px] border-white/10">
+      <Card class="glass-panel interactive-panel stat-card rounded-[28px] border-white/10">
         <CardContent class="p-5">
           <div class="text-sm text-[var(--muted-foreground)]">分类数量</div>
           <div class="mt-3 text-2xl font-semibold">{{ categories.length }}</div>
         </CardContent>
       </Card>
-      <Card class="glass-panel interactive-panel rounded-[28px] border-white/10">
+      <Card class="glass-panel interactive-panel stat-card rounded-[28px] border-white/10">
         <CardContent class="p-5">
           <div class="text-sm text-[var(--muted-foreground)]">文档篇数</div>
           <div class="mt-3 text-2xl font-semibold">{{ totalDocs }}</div>
@@ -72,7 +72,7 @@ onMounted(async () => {
     <StateBlock v-if="!categories.length" title="暂时没有文档" description="后台尚未发布帮助文档，后续更新会显示在这里。" />
 
     <div v-else class="space-y-6">
-      <Card v-for="[category, list] in categories" :key="category" class="glass-panel interactive-panel premium-shell rounded-[30px] border-white/10">
+      <Card v-for="[category, list] in categories" :key="category" class="glass-panel interactive-panel premium-shell spotlight-panel rounded-[30px] border-white/10">
         <CardHeader>
           <div class="flex flex-wrap items-center justify-between gap-3">
             <div>
@@ -86,7 +86,7 @@ onMounted(async () => {
           <button
             v-for="article in list"
             :key="article.id"
-            class="rounded-[24px] border border-white/10 bg-[var(--surface-elevated)] p-4 text-left transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[var(--shadow-soft)]"
+            class="dashboard-subpanel rounded-[24px] border border-white/10 bg-[var(--surface-elevated)] p-4 text-left transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[var(--shadow-soft)]"
             @click="openArticle(article)"
           >
             <div class="font-medium">{{ article.title }}</div>
