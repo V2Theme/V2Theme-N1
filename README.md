@@ -8,7 +8,7 @@
 
 - 演示地址：https://xb4.9996333.xyz/
 - 测试账号：`test@9996333.xyz`
-
+- 更新群组 https://t.me/v2board_theme
 ---
 
 ## ✨ 项目简介
