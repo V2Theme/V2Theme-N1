@@ -1,64 +1,131 @@
-# V2Theme for XiaoV2Board
-一个基于 Vue 3 + TypeScript + Vite 的前端主题 
+# 🚀 V2Theme for XiaoV2Board
 
-演示站：
-- https://xb4.9996333.xyz/
-- 测试账号密码 test@9996333.xyz
+一个基于 **Vue 3 + TypeScript + Vite** 构建的现代化 V2Board 用户前端主题，专注于美观设计与良好的用户体验。
 
-# V2Board User 前端项目
-一个美观、现代的V2Board管理后台前端项目，基于Vue 3开发。
+---
 
-## 特性
--  美观的UI设计，简约高端
--  支持亮色/暗色主题切换
--  支持 中间件加密
--  响应式设计，适配各种设备
--  完善的登录认证系统
--  支持自定义客户端下载链接
+## 🌐 在线演示
 
+- 演示地址：https://xb4.9996333.xyz/
+- 测试账号：`test@9996333.xyz`
+- 更新群组 https://t.me/v2board_theme
+---
 
-## 开始使用
+## ✨ 项目简介
 
-### 安装依赖
+V2Theme 是一个面向 V2Board 用户端的前端项目，采用现代前端技术栈开发，提供简洁、高端的 UI 设计以及完善的功能支持，适用于各类代理 / VPN 面板。
+
+---
+
+## 🔥 核心特性
+
+- 🎨 现代化 UI 设计（简约 / 高端）
+- 🌗 深色 / 浅色主题切换
+- 🔐 支持中间件加密
+- 📱 响应式设计，适配 PC / 平板 / 手机
+- 🔑 完整的登录认证系统
+- ⬇️ 支持自定义客户端下载地址
+
+---
+
+## 🧱 技术栈
+
+- Vue 3
+- TypeScript
+- Vite
+- Axios
+- Pinia
+
+---
+
+## 🚀 快速开始
+
+### 1️⃣ 安装依赖
 
 ```bash
 npm install
 ```
 
-## 配置
+### 2️⃣ 环境配置
 
-配置文件：
-- `将env.example 重命名 .env`
--`VITE_API_BASE_URL=后端API域名/api/v1`
--`如果开启中间件`VITE_API_BASE_URL=中间件域名`
--`VITE_SECURITY_ENABLED=true`  开启中间件
--`VITE_SECURITY_PASSWORD=xWiPdLebVEiYUgB94` 配置中间件密钥
--`VITE_SECURITY_PATH_PREFIX=/api/v1` 中间件路径
+将 `env.example` 重命名为 `.env`，然后根据需求修改：
 
-#配置客户端下载地址
+#### 🔗 API 地址（直连后端）
+
+```env
+VITE_API_BASE_URL=https://your-api-domain/api/v1
+```
+
+#### 🔐 使用中间件（可选）
+
+```env
+VITE_API_BASE_URL=https://your-middleware-domain
+```
+
+> ⚠️ 如果启用中间件，请将 API 地址替换为中间件地址。
+
+#### 🔒 是否开启中间件加密
+
+```env
+VITE_SECURITY_ENABLED=true
+```
+
+#### 🔑 中间件密钥
+
+```env
+VITE_SECURITY_PASSWORD=your-security-key
+```
+
+#### 🧭 中间件 API 路径前缀
+
+```env
+VITE_SECURITY_PATH_PREFIX=/api/v1
+```
+
+---
+
+## 📦 客户端下载地址配置
+
+```env
 VITE_CLIENT_DOWNLOAD_IOS=#
 VITE_CLIENT_DOWNLOAD_ANDROID=#
 VITE_CLIENT_DOWNLOAD_MACOS=#
 VITE_CLIENT_DOWNLOAD_WINDOWS=#
 VITE_CLIENT_DOWNLOAD_LINUX=#
+```
 
+---
 
-### 开发环境运行
+## 🧪 开发环境运行
 
 ```bash
 npm run serve
 ```
 
-### 生产环境构建
+---
+
+## 📦 生产环境构建
 
 ```bash
 npm run build
 ```
 
-构建产物输出到：
-- `dist/`
+构建产物输出目录：
 
+```bash
+dist/
+```
 
-PS: 构建前请修改 index.html 站点名称
+---
 
+## ⚠️ 注意事项
 
+- 构建前请修改 `index.html` 中的站点名称
+- 请确保 API 地址配置正确，否则会导致接口请求失败
+- 使用中间件时，请确保后端与中间件配置一致
+
+---
+
+## 📄 License
+
+仅供学习交流使用，请遵守当地法律法规。
