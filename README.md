@@ -1,64 +1,70 @@
-# V2Theme for XiaoV2Board
-一个基于 Vue 3 + TypeScript + Vite 的前端主题 
+🚀 V2Theme for XiaoV2Board
 
-演示站：
-- https://xb4.9996333.xyz/
-- 测试账号密码 test@9996333.xyz
+一个基于 Vue 3 + TypeScript + Vite 构建的现代化 V2Board 用户前端主题，专注于美观设计与良好的用户体验。
 
-# V2Board User 前端项目
-一个美观、现代的V2Board管理后台前端项目，基于Vue 3开发。
+🌐 在线演示
+演示地址：https://xb4.9996333.xyz/
+测试账号：test@9996333.xyz
+✨ 项目简介
 
-## 特性
--  美观的UI设计，简约高端
--  支持亮色/暗色主题切换
--  支持 中间件加密
--  响应式设计，适配各种设备
--  完善的登录认证系统
--  支持自定义客户端下载链接
+V2Theme 是一个面向 V2Board 用户端的前端项目，采用现代前端技术栈开发，提供简洁、高端的 UI 设计以及完善的功能支持，适用于各类代理/VPN 面板的用户系统。
 
-
-## 开始使用
-
-### 安装依赖
-
-```bash
+🔥 核心特性
+🎨 现代化 UI 设计 — 简约、干净、高端视觉风格
+🌗 深色 / 浅色模式 — 一键切换主题
+🔐 中间件加密支持 — 提升接口安全性
+📱 响应式布局 — 完美适配 PC / 平板 / 手机
+🔑 完整认证系统 — 登录、鉴权流程完善
+⬇️ 客户端下载配置 — 支持多平台下载入口自定义
+🧱 技术栈
+Vue 3
+TypeScript
+Vite
+Axios（API 请求）
+Pinia（状态管理）
+🚀 快速开始
+1️⃣ 安装依赖
 npm install
-```
+2️⃣ 环境配置
 
-## 配置
+将 env.example 重命名为 .env，并根据实际情况进行修改：
 
-配置文件：
-- `将env.example 重命名 .env`
--`VITE_API_BASE_URL=后端API域名/api/v1`
--`如果开启中间件`VITE_API_BASE_URL=中间件域名`
--`VITE_SECURITY_ENABLED=true`  开启中间件
--`VITE_SECURITY_PASSWORD=xWiPdLebVEiYUgB94` 配置中间件密钥
--`VITE_SECURITY_PATH_PREFIX=/api/v1` 中间件路径
+# API 地址（直连后端）
+VITE_API_BASE_URL=https://your-api-domain/api/v1
 
-#配置客户端下载地址
+# 如果启用中间件，请填写中间件地址
+# VITE_API_BASE_URL=https://your-middleware-domain
+
+# 是否开启中间件加密
+VITE_SECURITY_ENABLED=true
+
+# 中间件密钥
+VITE_SECURITY_PASSWORD=your-security-key
+
+# 中间件 API 路径前缀
+VITE_SECURITY_PATH_PREFIX=/api/v1
+📦 客户端下载地址配置
 VITE_CLIENT_DOWNLOAD_IOS=#
 VITE_CLIENT_DOWNLOAD_ANDROID=#
 VITE_CLIENT_DOWNLOAD_MACOS=#
 VITE_CLIENT_DOWNLOAD_WINDOWS=#
 VITE_CLIENT_DOWNLOAD_LINUX=#
-
-
-### 开发环境运行
-
-```bash
+🧪 开发环境运行
 npm run serve
-```
-
-### 生产环境构建
-
-```bash
+📦 生产环境构建
 npm run build
-```
 
-构建产物输出到：
-- `dist/`
+构建完成后，产物将输出至：
 
+dist/
+⚠️ 注意事项
+构建前请务必修改 index.html 中的站点名称
+请确保 API 地址配置正确，否则会导致接口请求失败
+开启中间件时，请确保后端与中间件配置一致
+💡 适用场景
+V2Board 用户前端替换
+VPN / 代理服务用户中心
+自定义面板 UI 二次开发
+📄 License
 
-PS: 构建前请修改 index.html 站点名称
-
-
+本项目仅供学习与交流使用，请遵守相关法律法规。
