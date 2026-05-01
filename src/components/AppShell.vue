@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ChevronRight, LogOut, Menu, Sparkles, X, LayoutDashboard } from "lucide-vue-next";
+import { LogOut, Menu, Sparkles, X } from "lucide-vue-next";
 import { computed, ref, watch } from "vue";
 import { RouterLink, useRoute, useRouter } from "vue-router";
 import AppFooter from "@/components/AppFooter.vue";
@@ -17,7 +17,12 @@ const open = ref(false);
 
 const activeLabel = computed(() => navItems.find((item) => route.path.startsWith(item.to))?.label ?? "用户中心");
 
-watch(() => route.fullPath, () => { open.value = false; });
+watch(
+  () => route.fullPath,
+  () => {
+    open.value = false;
+  },
+);
 
 function logout() {
   auth.logout();
@@ -27,7 +32,6 @@ function logout() {
 
 <template>
   <div class="min-h-screen bg-background">
-    <!-- 极简高亮顶部栏 -->
     <header class="sticky top-0 z-40 border-b bg-background/80 backdrop-blur-md">
       <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6">
         <div class="flex items-center gap-3">
@@ -58,11 +62,13 @@ function logout() {
     <div class="mx-auto flex max-w-7xl items-start gap-8 px-4 py-8 sm:px-6">
       <div v-if="open" class="fixed inset-0 z-20 bg-background/80 backdrop-blur-sm md:hidden" @click="open = false" />
 
-      <!-- 现代侧边栏 -->
-      <aside :class="cn(
-          'fixed inset-y-0 left-0 z-30 w-64 self-start overflow-y-auto border-r bg-background px-4 py-6 transition-transform duration-300 md:static md:block md:w-56 md:shrink-0 md:border-0 md:bg-transparent md:px-0 md:py-0',
-          open ? 'translate-x-0' : '-translate-x-full md:translate-x-0'
-        )"
+      <aside
+        :class="
+          cn(
+            'fixed inset-y-0 left-0 z-30 w-64 self-start overflow-y-auto border-r bg-background px-4 py-6 transition-transform duration-300 md:static md:block md:w-56 md:shrink-0 md:border-0 md:bg-transparent md:px-0 md:py-0',
+            open ? 'translate-x-0' : '-translate-x-full md:translate-x-0',
+          )
+        "
       >
         <div class="mb-6 flex items-center justify-between md:hidden">
           <div class="text-sm font-semibold">导航菜单</div>
@@ -76,12 +82,14 @@ function logout() {
             v-for="item in navItems"
             :key="item.to"
             :to="item.to"
-            :class="cn(
-              'flex items-center justify-between rounded-md px-3 py-2 text-sm font-medium transition-colors',
-              route.path.startsWith(item.to)
-                ? 'bg-primary/10 text-primary'
-                : 'text-muted-foreground hover:bg-muted hover:text-foreground'
-            )"
+            :class="
+              cn(
+                'flex items-center justify-between rounded-md px-3 py-2 text-sm font-medium transition-colors',
+                route.path.startsWith(item.to)
+                  ? 'bg-primary/10 text-primary'
+                  : 'text-muted-foreground hover:bg-muted hover:text-foreground',
+              )
+            "
           >
             <span class="flex items-center gap-3">
               {{ item.label }}

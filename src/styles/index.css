@@ -75,18 +75,16 @@
   body {
     @apply bg-background text-foreground;
     @apply font-sans;
-    /* 去除原版杂乱的全局背景光晕，换为纯净的背景 */
     background: var(--background);
   }
 }
 
-/* 核心 UI 覆盖：将玻璃拟态压平，转为现代极简卡片 */
 @layer components {
   .glass-panel, .dashboard-subpanel, .action-band {
     background: var(--surface-elevated);
     border: 1px solid var(--border);
     box-shadow: var(--shadow-card);
-    border-radius: var(--radius); /* 将所有大圆角改为克制的中等圆角 */
+    border-radius: var(--radius);
     transition: all 200ms ease;
   }
 
@@ -94,7 +92,6 @@
     border-color: color-mix(in srgb, var(--primary) 30%, var(--border));
   }
 
-  /* 移除过度修饰的伪元素 */
   .interactive-panel::before, .interactive-panel::after, 
   .premium-shell::before, .premium-shell::after,
   .spotlight-panel::before, .spotlight-panel::after,
@@ -102,7 +99,6 @@
     display: none !important;
   }
 
-  /* 数据进度条优化 */
   .stat-bar {
     overflow: hidden;
     border-radius: 9999px;
@@ -112,11 +108,10 @@
     display: block;
     height: 100%;
     border-radius: inherit;
-    background: var(--foreground); /* 使用纯净的高对比度色 */
+    background: var(--foreground);
     box-shadow: none;
   }
 
-  /* SaaS 标准按钮 Hover 态 */
   .hero-cta {
     background-color: var(--primary);
     color: var(--primary-foreground);

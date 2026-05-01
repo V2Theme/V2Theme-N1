@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Activity, CreditCard, Gauge, Ticket } from "lucide-vue-next";
+import { CreditCard, Gauge, Ticket } from "lucide-vue-next";
 import { computed, onMounted, reactive, ref } from "vue";
 import { useRouter } from "vue-router";
 import PageHeader from "@/components/PageHeader.vue";
@@ -25,7 +25,6 @@ const quickStats = reactive([
   { label: "待处理工单", icon: Ticket, value: "-" },
 ]);
 
-// 逻辑保留... (此处省略中间完全一样的 Computed 和 API 逻辑，确保未删减业务)
 const totalTransfer = computed(() => subscribe.value?.transfer_enable ?? user.value?.transfer_enable ?? 0);
 const usedTransfer = computed(() => (subscribe.value?.u ?? user.value?.u ?? 0) + (subscribe.value?.d ?? user.value?.d ?? 0));
 const usagePercent = computed(() => toPercent(usedTransfer.value, totalTransfer.value));
@@ -36,14 +35,22 @@ const planStatus = computed(() => (subscribe.value?.expired_at ? "服务有效" 
 onMounted(async () => {
   try {
     const [userInfo, subscribeInfo, statInfo, ticketList] = await Promise.all([
-      api.getUserInfo(), api.getSubscribe(), api.getStats(), api.getTickets(),
+      api.getUserInfo(),
+      api.getSubscribe(),
+      api.getStats(),
+      api.getTickets(),
     ]);
-    user.value = userInfo; subscribe.value = subscribeInfo; stats.value = statInfo; tickets.value = ticketList;
+
+    user.value = userInfo;
+    subscribe.value = subscribeInfo;
+    stats.value = statInfo;
+    tickets.value = ticketList;
+
     quickStats[0].value = formatCurrency(userInfo.balance);
     quickStats[1].value = formatBytes(usedTransfer.value);
     quickStats[2].value = String(ticketList.filter((item) => item.status === 0).length);
   } catch (err) {
-    error.value = err instanceof Error ? err.message : "加载失败";
+    error.value = err instanceof Error ? err.message : "暂时无法加载首页信息，请稍后再试。";
   } finally {
     loading.value = false;
   }
@@ -51,13 +58,15 @@ onMounted(async () => {
 </script>
 
 <template>
-  <PageHeader title="仪表盘" description="概览您的套餐状态、流量使用及账户资金。" />
+  <PageHeader
+    title="仪表盘"
+    description="概览您的套餐状态、流量使用及账户资金。"
+  />
 
   <StateBlock v-if="loading" title="正在同步数据" description="正在获取最新状态，请稍候。" />
   <StateBlock v-else-if="error" title="加载失败" :description="error" />
 
   <div v-else class="space-y-6">
-    <!-- 指标卡片 (Metrics) -->
     <div class="grid gap-4 md:grid-cols-3">
       <Card v-for="item in quickStats" :key="item.label" class="glass-panel">
         <CardContent class="flex items-center justify-between p-6">
@@ -72,7 +81,6 @@ onMounted(async () => {
       </Card>
     </div>
 
-    <!-- 核心区域 -->
     <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-7">
       <Card class="glass-panel lg:col-span-4">
         <CardHeader class="flex flex-row items-center justify-between pb-2">

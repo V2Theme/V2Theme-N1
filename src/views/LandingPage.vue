@@ -1,21 +1,19 @@
 <script setup lang="ts">
-import { ArrowRight, Globe, Laptop, ShieldCheck, Sparkles, Waypoints, Wrench } from "lucide-vue-next";
+import { ArrowRight, Sparkles } from "lucide-vue-next";
 import { RouterLink } from "vue-router";
 import AppFooter from "@/components/AppFooter.vue";
 import ThemeToggle from "@/components/ThemeToggle.vue";
 import { appConfig } from "@/config/app";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-
-// 数据保留不变...
 </script>
 
 <template>
   <div class="relative min-h-screen bg-background text-foreground selection:bg-primary/20">
-    <!-- 替换为干净的网格线 -->
+    <!-- 极简网格背景 -->
     <div class="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
 
-    <div class="relative mx-auto flex max-w-7xl flex-col px-6 py-8">
+    <div class="relative mx-auto flex max-w-7xl flex-col px-6 py-8 min-h-screen">
       <header class="flex items-center justify-between mb-24">
         <div class="flex items-center gap-2">
           <div class="flex h-8 w-8 items-center justify-center rounded-md bg-primary text-primary-foreground">
@@ -34,8 +32,8 @@ import { Button } from "@/components/ui/button";
         </div>
       </header>
 
-      <main class="mx-auto max-w-4xl text-center">
-        <Badge variant="outline" class="mb-6 rounded-full px-4 py-1 text-sm">
+      <main class="mx-auto max-w-4xl text-center flex-1 flex flex-col justify-center">
+        <Badge variant="outline" class="mb-6 rounded-full px-4 py-1.5 text-sm mx-auto w-fit">
           <span class="mr-2 flex h-2 w-2 rounded-full bg-green-500"></span>
           高可用企业级网络服务
         </Badge>
@@ -51,18 +49,18 @@ import { Button } from "@/components/ui/button";
 
         <div class="flex items-center justify-center gap-4">
           <RouterLink to="/register">
-            <Button size="lg" class="h-12 px-8 text-base">
+            <Button size="lg" class="h-12 px-8 text-base shadow-sm">
               立即开始
               <ArrowRight class="ml-2 h-4 w-4" />
             </Button>
           </RouterLink>
           <RouterLink to="/plans">
-            <Button variant="outline" size="lg" class="h-12 px-8 text-base">查看方案</Button>
+            <Button variant="outline" size="lg" class="h-12 px-8 text-base shadow-sm">查看方案</Button>
           </RouterLink>
         </div>
       </main>
 
-      <AppFooter class="mt-auto border-none pt-24" />
+      <AppFooter class="mt-auto border-none pt-12 pb-4" />
     </div>
   </div>
 </template>
