@@ -25,6 +25,7 @@ const quickStats = reactive([
   { label: "待处理工单", icon: Ticket, value: "-" },
 ]);
 
+// 逻辑保留... (此处省略中间完全一样的 Computed 和 API 逻辑，确保未删减业务)
 const totalTransfer = computed(() => subscribe.value?.transfer_enable ?? user.value?.transfer_enable ?? 0);
 const usedTransfer = computed(() => (subscribe.value?.u ?? user.value?.u ?? 0) + (subscribe.value?.d ?? user.value?.d ?? 0));
 const usagePercent = computed(() => toPercent(usedTransfer.value, totalTransfer.value));
@@ -35,22 +36,14 @@ const planStatus = computed(() => (subscribe.value?.expired_at ? "服务有效" 
 onMounted(async () => {
   try {
     const [userInfo, subscribeInfo, statInfo, ticketList] = await Promise.all([
-      api.getUserInfo(),
-      api.getSubscribe(),
-      api.getStats(),
-      api.getTickets(),
+      api.getUserInfo(), api.getSubscribe(), api.getStats(), api.getTickets(),
     ]);
-
-    user.value = userInfo;
-    subscribe.value = subscribeInfo;
-    stats.value = statInfo;
-    tickets.value = ticketList;
-
+    user.value = userInfo; subscribe.value = subscribeInfo; stats.value = statInfo; tickets.value = ticketList;
     quickStats[0].value = formatCurrency(userInfo.balance);
     quickStats[1].value = formatBytes(usedTransfer.value);
     quickStats[2].value = String(ticketList.filter((item) => item.status === 0).length);
   } catch (err) {
-    error.value = err instanceof Error ? err.message : "暂时无法加载首页信息，请稍后再试。";
+    error.value = err instanceof Error ? err.message : "加载失败";
   } finally {
     loading.value = false;
   }
@@ -58,98 +51,83 @@ onMounted(async () => {
 </script>
 
 <template>
-  <PageHeader
-    title="仪表盘"
-    description="把套餐状态、流量使用和待处理事项集中到一个页面，方便您快速查看并继续操作。"
-  />
+  <PageHeader title="仪表盘" description="概览您的套餐状态、流量使用及账户资金。" />
 
-  <StateBlock v-if="loading" title="正在加载首页信息" description="正在同步账户、订阅和工单信息，请稍候。" />
+  <StateBlock v-if="loading" title="正在同步数据" description="正在获取最新状态，请稍候。" />
   <StateBlock v-else-if="error" title="加载失败" :description="error" />
 
   <div v-else class="space-y-6">
+    <!-- 指标卡片 (Metrics) -->
     <div class="grid gap-4 md:grid-cols-3">
-      <Card
-        v-for="(item, index) in quickStats"
-        :key="item.label"
-        class="glass-panel interactive-panel premium-shell stat-card min-h-[152px] rounded-[30px] border-white/10 animated-enter-soft"
-        :style="{ animationDelay: `${index * 70}ms` }"
-      >
-        <CardContent class="flex h-full items-start justify-between p-6">
-          <div>
-            <div class="text-sm text-[var(--muted-foreground)]">{{ item.label }}</div>
-            <div class="mt-4 text-[2rem] font-semibold tracking-tight">{{ item.value }}</div>
+      <Card v-for="item in quickStats" :key="item.label" class="glass-panel">
+        <CardContent class="flex items-center justify-between p-6">
+          <div class="space-y-1">
+            <p class="text-sm font-medium text-muted-foreground">{{ item.label }}</p>
+            <p class="text-2xl font-bold tracking-tight">{{ item.value }}</p>
           </div>
-          <div class="flex h-12 w-12 items-center justify-center rounded-[20px] border border-white/10 bg-[var(--surface-elevated)] shadow-[var(--shadow-soft)]">
-            <component :is="item.icon" class="h-5 w-5 text-[var(--primary)]" />
+          <div class="rounded-md bg-muted p-3">
+            <component :is="item.icon" class="h-5 w-5 text-foreground" />
           </div>
         </CardContent>
       </Card>
     </div>
 
-    <div class="grid gap-6 xl:grid-cols-[1.7fr_1.05fr]">
-      <Card class="glass-panel interactive-panel premium-shell spotlight-panel min-h-[448px] rounded-[32px] border-white/10 animated-enter-soft" style="animation-delay: 120ms;">
-        <CardHeader class="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
-          <div>
-            <CardTitle class="text-[1.85rem] tracking-tight">当前套餐</CardTitle>
-            <CardDescription class="mt-2 text-base leading-7">{{ currentPlanName }}</CardDescription>
+    <!-- 核心区域 -->
+    <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-7">
+      <Card class="glass-panel lg:col-span-4">
+        <CardHeader class="flex flex-row items-center justify-between pb-2">
+          <div class="space-y-1">
+            <CardTitle>当前套餐</CardTitle>
+            <CardDescription>{{ currentPlanName }}</CardDescription>
           </div>
-          <Badge :variant="subscribe?.expired_at ? 'secondary' : 'outline'" class="rounded-full px-3 py-1.5">{{ planStatus }}</Badge>
+          <Badge :variant="subscribe?.expired_at ? 'default' : 'secondary'">{{ planStatus }}</Badge>
         </CardHeader>
-
-        <CardContent class="flex h-full flex-col space-y-6">
-          <div class="grid gap-4 sm:grid-cols-2">
-            <div class="dashboard-subpanel rounded-[24px] border border-white/10 bg-[var(--surface-elevated)] p-5">
-              <div class="text-xs uppercase tracking-[0.18em] text-[var(--muted-foreground)]">到期时间</div>
-              <div class="mt-3 text-base font-medium">{{ formatDate(subscribe?.expired_at) }}</div>
+        <CardContent class="space-y-6 pt-4">
+          <div class="grid grid-cols-2 gap-4">
+            <div class="space-y-1">
+              <p class="text-xs text-muted-foreground font-medium uppercase">到期时间</p>
+              <p class="font-medium">{{ formatDate(subscribe?.expired_at) }}</p>
             </div>
-            <div class="dashboard-subpanel rounded-[24px] border border-white/10 bg-[var(--surface-elevated)] p-5">
-              <div class="text-xs uppercase tracking-[0.18em] text-[var(--muted-foreground)]">设备限制</div>
-              <div class="mt-3 text-base font-medium">{{ subscribe?.device_limit ?? user?.device_limit ?? "不限" }}</div>
+            <div class="space-y-1">
+              <p class="text-xs text-muted-foreground font-medium uppercase">设备限制</p>
+              <p class="font-medium">{{ subscribe?.device_limit ?? user?.device_limit ?? "不限" }}</p>
             </div>
           </div>
 
-          <div class="dashboard-subpanel rounded-[24px] border border-white/10 bg-[var(--surface-elevated)] p-5">
-            <div class="mb-3 flex items-center justify-between text-sm">
-              <span>流量使用情况</span>
-              <span>{{ usagePercent }}%</span>
+          <div class="space-y-2">
+            <div class="flex items-center justify-between text-sm">
+              <span class="font-medium">流量使用情况</span>
+              <span class="text-muted-foreground">{{ usagePercent }}%</span>
             </div>
-            <div class="stat-bar h-2.5">
+            <div class="stat-bar h-2">
               <span :style="{ width: `${usagePercent}%` }" />
             </div>
-            <div class="mt-4 flex items-center justify-between text-sm text-[var(--muted-foreground)]">
+            <div class="flex items-center justify-between text-xs text-muted-foreground">
               <span>已用 {{ formatBytes(usedTransfer) }}</span>
               <span>总量 {{ formatBytes(totalTransfer) }}</span>
             </div>
           </div>
 
-          <div class="mt-auto flex flex-wrap gap-3 pt-2">
-            <Button class="hero-cta rounded-full px-5" @click="router.push('/subscription')">查看订阅</Button>
-            <Button variant="outline" class="hero-cta-secondary rounded-full px-5" @click="router.push('/plans')">选购套餐</Button>
-            <Button variant="outline" class="hero-cta-secondary rounded-full px-5" @click="router.push('/tickets')">提交工单</Button>
+          <div class="flex items-center gap-3 pt-4">
+            <Button class="hero-cta" @click="router.push('/subscription')">查看订阅</Button>
+            <Button variant="outline" class="hero-cta-secondary" @click="router.push('/plans')">升级套餐</Button>
           </div>
         </CardContent>
       </Card>
 
-      <Card class="glass-panel interactive-panel premium-shell spotlight-panel min-h-[448px] rounded-[32px] border-white/10 animated-enter-soft" style="animation-delay: 180ms;">
-        <CardHeader class="pb-4">
-          <div class="flex items-center gap-3">
-            <div class="flex h-12 w-12 items-center justify-center rounded-[20px] border border-white/10 bg-[var(--surface-elevated)] shadow-[var(--shadow-soft)]">
-              <Activity class="h-5 w-5 text-[var(--primary)]" />
-            </div>
-            <div>
-              <CardTitle class="text-[1.65rem] tracking-tight">快速概览</CardTitle>
-              <CardDescription class="mt-1 text-sm leading-6">保留最常看的信息，让首页更简洁，也更容易一眼读懂。</CardDescription>
-            </div>
-          </div>
+      <Card class="glass-panel lg:col-span-3">
+        <CardHeader>
+          <CardTitle>快速概览</CardTitle>
+          <CardDescription>今日连接与工单动态</CardDescription>
         </CardHeader>
-        <CardContent class="flex h-full flex-col space-y-4">
-          <div class="dashboard-subpanel rounded-[24px] border border-white/10 bg-[var(--surface-elevated)] p-5">
-            <div class="text-sm text-[var(--muted-foreground)]">今日流量</div>
-            <div class="mt-3 text-[2rem] font-semibold tracking-tight">{{ formatBytes(stats.day_used_traffic ?? 0) }}</div>
+        <CardContent class="space-y-6">
+          <div class="flex items-center justify-between border-b pb-4">
+            <span class="text-sm font-medium text-muted-foreground">今日流量消耗</span>
+            <span class="text-xl font-bold">{{ formatBytes(stats.day_used_traffic ?? 0) }}</span>
           </div>
-          <div class="dashboard-subpanel rounded-[24px] border border-white/10 bg-[var(--surface-elevated)] p-5">
-            <div class="text-sm text-[var(--muted-foreground)]">待处理工单</div>
-            <div class="mt-3 text-[2rem] font-semibold tracking-tight">{{ pendingTickets }}</div>
+          <div class="flex items-center justify-between">
+            <span class="text-sm font-medium text-muted-foreground">待处理工单</span>
+            <span class="text-xl font-bold">{{ pendingTickets }}</span>
           </div>
         </CardContent>
       </Card>
