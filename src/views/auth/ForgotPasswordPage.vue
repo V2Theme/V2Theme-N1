@@ -18,9 +18,9 @@ async function submit() {
   loading.value = true;
   try {
     await api.resetPassword({ email: form.email, email_code: form.code, password: form.password });
-    toast.success("密码已重置，请使用新密码登录。");
+    toast.success("密码重置成功，请使用新密码登录。");
   } catch (error) {
-    toast.error(error instanceof Error ? error.message : "暂时无法重置密码，请稍后再试。");
+    toast.error(error instanceof Error ? error.message : "重置失败，请验证您的信息。");
   } finally {
     loading.value = false;
   }
@@ -29,52 +29,52 @@ async function submit() {
 
 <template>
   <AuthFrame>
-    <Card class="glass-panel interactive-panel rounded-[32px] border-white/10 shadow-[var(--shadow-card)]">
-      <CardHeader class="space-y-4 p-7 pb-4">
-        <div class="flex items-center justify-between gap-3">
-          <Badge variant="secondary" class="rounded-full px-3 py-1">找回密码</Badge>
-          <div class="flex h-10 w-10 items-center justify-center rounded-2xl border border-white/10 bg-[var(--surface-elevated)]">
-            <KeyRound class="h-4 w-4 text-[var(--primary)]" />
+    <Card class="border-0 bg-transparent shadow-none sm:border sm:bg-background sm:shadow-sm rounded-2xl">
+      <CardHeader class="space-y-3 pb-6 sm:p-8 sm:pb-6">
+        <div class="flex items-center justify-between">
+          <Badge variant="secondary" class="rounded-md px-2.5 py-0.5 text-xs font-medium">安全恢复</Badge>
+          <div class="flex h-8 w-8 items-center justify-center rounded-md bg-muted">
+            <KeyRound class="h-4 w-4 text-foreground" />
           </div>
         </div>
         <div>
-          <CardTitle class="text-3xl tracking-tight">重新设置登录密码</CardTitle>
-          <CardDescription class="mt-2 text-sm leading-6">
-            输入邮箱、验证码和新密码后即可完成重置，成功后可直接返回登录页继续使用。
+          <CardTitle class="text-2xl font-bold tracking-tight">重置密码</CardTitle>
+          <CardDescription class="mt-1.5 text-sm">
+            请验证您的邮箱以设置新的安全密码。
           </CardDescription>
         </div>
       </CardHeader>
 
-      <CardContent class="space-y-6 p-7 pt-2">
+      <CardContent class="space-y-6 sm:p-8 sm:pt-0">
         <form class="space-y-4" @submit.prevent="submit">
           <div class="space-y-2">
-            <label class="text-sm font-medium text-[var(--foreground)]">邮箱</label>
-            <Input v-model="form.email" type="email" placeholder="name@example.com" class="h-11 rounded-2xl bg-[var(--surface-elevated)] px-4" />
+            <label class="text-sm font-medium leading-none">账户邮箱</label>
+            <Input v-model="form.email" type="email" placeholder="name@example.com" class="h-10" />
           </div>
           <div class="space-y-2">
-            <label class="text-sm font-medium text-[var(--foreground)]">邮箱验证码</label>
-            <Input v-model="form.code" placeholder="请输入验证码" class="h-11 rounded-2xl bg-[var(--surface-elevated)] px-4" />
+            <label class="text-sm font-medium leading-none">邮件验证码</label>
+            <Input v-model="form.code" placeholder="输入 6 位验证码" class="h-10" />
           </div>
           <div class="space-y-2">
-            <label class="text-sm font-medium text-[var(--foreground)]">新密码</label>
-            <Input v-model="form.password" type="password" placeholder="请输入新密码" class="h-11 rounded-2xl bg-[var(--surface-elevated)] px-4" />
+            <label class="text-sm font-medium leading-none">新密码</label>
+            <Input v-model="form.password" type="password" placeholder="设置新的高强度密码" class="h-10" />
           </div>
-          <Button class="h-11 w-full rounded-2xl" type="submit" :disabled="loading || disabled">
-            <LoaderCircle v-if="loading" class="h-4 w-4 animate-spin" />
-            <span v-else>重置密码</span>
+          <Button class="w-full h-10 mt-2" type="submit" :disabled="loading || disabled">
+            <LoaderCircle v-if="loading" class="mr-2 h-4 w-4 animate-spin" />
+            <span v-else>确认重置</span>
           </Button>
         </form>
 
-        <div class="rounded-[24px] border border-white/10 bg-[var(--surface-elevated)] p-4">
-          <div class="text-xs uppercase tracking-[0.18em] text-[var(--muted-foreground)]">温馨提示</div>
-          <div class="mt-2 text-sm leading-6 text-[var(--foreground)]">
-            如果没有收到验证码，建议先确认垃圾邮箱和邮箱设置，稍后再重新尝试。
+        <div class="rounded-lg border bg-muted/50 p-4">
+          <div class="text-[10px] font-bold uppercase tracking-wider text-muted-foreground">收不到邮件？</div>
+          <div class="mt-1 text-sm font-medium">
+            请检查垃圾邮件文件夹，或等待一分钟后重新发送请求。
           </div>
         </div>
 
-        <div class="text-center text-sm text-[var(--muted-foreground)]">
-          想起密码了？
-          <RouterLink to="/login" class="font-medium text-[var(--primary)] transition hover:opacity-80">返回登录</RouterLink>
+        <div class="text-center text-sm text-muted-foreground">
+          记起密码了？
+          <RouterLink to="/login" class="font-semibold text-primary hover:underline underline-offset-4">返回登录</RouterLink>
         </div>
       </CardContent>
     </Card>

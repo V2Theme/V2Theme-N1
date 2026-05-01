@@ -36,7 +36,7 @@ async function sendCode() {
       countdown.value -= 1;
       if (countdown.value <= 0) clearInterval(timer);
     }, 1000);
-    toast.success("验证码已发送。");
+    toast.success("验证码已发送至您的邮箱。");
   } catch (error) {
     toast.error(error instanceof Error ? error.message : "发送失败，请稍后重试。");
   } finally {
@@ -54,10 +54,10 @@ async function onSubmit() {
       email_code: form.code || undefined,
     });
     await auth.login(form.email, form.password);
-    toast.success("注册成功。");
+    toast.success("账户创建成功。");
     router.push("/dashboard");
   } catch (error) {
-    toast.error(error instanceof Error ? error.message : "注册失败，请稍后再试。");
+    toast.error(error instanceof Error ? error.message : "注册失败，请检查输入信息。");
   } finally {
     loading.value = false;
   }
@@ -66,44 +66,47 @@ async function onSubmit() {
 
 <template>
   <AuthFrame>
-    <Card class="glass-panel interactive-panel premium-shell rounded-[32px] border-white/10 shadow-[var(--shadow-card)]">
-      <CardHeader class="space-y-4 p-7 pb-4">
-        <div class="flex items-center justify-between gap-3">
-          <Badge variant="secondary" class="rounded-full px-3 py-1">创建账户</Badge>
-          <div class="flex h-10 w-10 items-center justify-center rounded-2xl border border-white/10 bg-[var(--surface-elevated)]">
-            <Sparkles class="h-4 w-4 text-[var(--primary)]" />
+    <Card class="border-0 bg-transparent shadow-none sm:border sm:bg-background sm:shadow-sm rounded-2xl">
+      <CardHeader class="space-y-3 pb-6 sm:p-8 sm:pb-6">
+        <div class="flex items-center justify-between">
+          <Badge variant="secondary" class="rounded-md px-2.5 py-0.5 text-xs font-medium">新用户</Badge>
+          <div class="flex h-8 w-8 items-center justify-center rounded-md bg-muted">
+            <Sparkles class="h-4 w-4 text-foreground" />
           </div>
         </div>
         <div>
-          <CardTitle class="text-3xl tracking-tight">注册新账户</CardTitle>
-          <CardDescription class="mt-2 text-sm leading-6">
-            完成注册后将自动进入用户中心，您可以立即查看套餐、复制订阅链接并开始使用服务。
+          <CardTitle class="text-2xl font-bold tracking-tight">创建账户</CardTitle>
+          <CardDescription class="mt-1.5 text-sm">
+            只需几步，即可开启您的全球极速网络之旅。
           </CardDescription>
         </div>
       </CardHeader>
 
-      <CardContent class="space-y-6 p-7 pt-2">
+      <CardContent class="space-y-6 sm:p-8 sm:pt-0">
         <form class="space-y-4" @submit.prevent="onSubmit">
           <div class="space-y-2">
-            <label class="text-sm font-medium text-[var(--foreground)]">邮箱</label>
-            <Input v-model="form.email" type="email" placeholder="name@example.com" class="h-11 rounded-2xl bg-[var(--surface-elevated)] px-4" />
+            <label class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+              注册邮箱
+            </label>
+            <Input v-model="form.email" type="email" placeholder="name@example.com" class="h-10" />
           </div>
 
           <div class="space-y-2">
             <div class="flex items-center justify-between">
-              <label class="text-sm font-medium text-[var(--foreground)]">邮箱验证码</label>
-              <Badge variant="outline" class="rounded-full px-2.5 py-1">按站点配置启用</Badge>
+              <label class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+                验证码
+              </label>
             </div>
-            <div class="flex flex-col gap-3 sm:flex-row">
-              <Input v-model="form.code" placeholder="输入邮箱验证码" class="h-11 rounded-2xl bg-[var(--surface-elevated)] px-4" />
+            <div class="flex gap-2">
+              <Input v-model="form.code" placeholder="输入邮箱验证码" class="h-10" />
               <Button
                 type="button"
                 variant="outline"
-                class="h-11 rounded-2xl px-4 sm:w-auto"
+                class="h-10 shrink-0"
                 :disabled="sending || countdown > 0 || !form.email.trim()"
                 @click="sendCode"
               >
-                <MailCheck class="h-4 w-4" />
+                <MailCheck class="mr-2 h-4 w-4" />
                 {{ countdown > 0 ? `${countdown}s` : "发送验证码" }}
               </Button>
             </div>
@@ -111,31 +114,31 @@ async function onSubmit() {
 
           <div class="grid gap-4 sm:grid-cols-2">
             <div class="space-y-2">
-              <label class="text-sm font-medium text-[var(--foreground)]">密码</label>
-              <Input v-model="form.password" type="password" placeholder="建议至少 8 位" class="h-11 rounded-2xl bg-[var(--surface-elevated)] px-4" />
+              <label class="text-sm font-medium leading-none">登录密码</label>
+              <Input v-model="form.password" type="password" placeholder="至少 8 位安全密码" class="h-10" />
             </div>
             <div class="space-y-2">
-              <label class="text-sm font-medium text-[var(--foreground)]">邀请码</label>
-              <Input v-model="form.inviteCode" placeholder="选填，打开邀请链接后会自动带入" class="h-11 rounded-2xl bg-[var(--surface-elevated)] px-4" />
+              <label class="text-sm font-medium leading-none text-muted-foreground">邀请码 (可选)</label>
+              <Input v-model="form.inviteCode" placeholder="若有推荐链接会自动填入" class="h-10" />
             </div>
           </div>
 
-          <Button class="hero-cta h-11 w-full rounded-2xl" type="submit" :disabled="disabled || loading">
-            <LoaderCircle v-if="loading" class="h-4 w-4 animate-spin" />
-            <span v-else>注册并进入用户中心</span>
+          <Button class="w-full h-10 mt-2" type="submit" :disabled="disabled || loading">
+            <LoaderCircle v-if="loading" class="mr-2 h-4 w-4 animate-spin" />
+            <span v-else>注册并初始化控制台</span>
           </Button>
         </form>
 
-        <div class="rounded-[24px] border border-white/10 bg-[var(--surface-elevated)] p-4">
-          <div class="text-xs uppercase tracking-[0.18em] text-[var(--muted-foreground)]">快速开始</div>
-          <div class="mt-2 text-sm leading-6 text-[var(--foreground)]">
-            完成注册后会自动登录并进入用户中心，您可以立刻查看套餐状态、订阅入口和常用功能。
+        <div class="rounded-lg border bg-muted/50 p-4">
+          <div class="text-[10px] font-bold uppercase tracking-wider text-muted-foreground">极速部署</div>
+          <div class="mt-1 text-sm font-medium">
+            注册后即可选购方案并一键导入配置，全平台无缝衔接。
           </div>
         </div>
 
-        <div class="text-center text-sm text-[var(--muted-foreground)]">
-          已有账户？
-          <RouterLink to="/login" class="font-medium text-[var(--primary)] transition hover:opacity-80">去登录</RouterLink>
+        <div class="text-center text-sm text-muted-foreground">
+          已有控制台账户？
+          <RouterLink to="/login" class="font-semibold text-primary hover:underline underline-offset-4">返回登录</RouterLink>
         </div>
       </CardContent>
     </Card>
